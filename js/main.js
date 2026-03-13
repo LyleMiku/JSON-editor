@@ -1,13 +1,5 @@
-function setMode(mode){
+function setStatus(text){
 
-if(mode==="readonly"){
-
-editor.updateOptions({readOnly:true});
-
-return;
-
-}
-
-editor.updateOptions({readOnly:false});
+document.getElementById("status").innerText = text
 
 }
