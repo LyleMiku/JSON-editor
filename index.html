@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>JSON Editor 2.0</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+<button onclick="createEmpty()">新建</button>
+
+<input type="file" id="upload" accept=".json">
+
+<button onclick="downloadJSON()">下载</button>
+
+<button onclick="saveFile()">保存</button>
+
+<button onclick="formatJSON()">格式化</button>
+
+<button onclick="validateJSON()">校验</button>
+
+<select onchange="setEditMode(this.value)">
+<option value="all">键名键值均可编辑</option>
+<option value="value">仅键值可编辑</option>
+<option value="readonly">只读</option>
+</select>
+
+<select onchange="loadTemplate(this.value)">
+<option value="">模板</option>
+<option value="user">User</option>
+<option value="config">Config</option>
+<option value="api">API</option>
+</select>
+
+</div>
+
+<div id="editor"></div>
+
+<div id="status">Ready</div>
+
+<script src="js/editor.js"></script>
+<script src="js/modes.js"></script>
+<script src="js/jsonParser.js"></script>
+<script src="js/keyDetector.js"></script>
+<script src="js/fileManager.js"></script>
+<script src="js/templateManager.js"></script>
+<script src="js/formatter.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
