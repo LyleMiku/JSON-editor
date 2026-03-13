@@ -1,48 +1,50 @@
 function createEmpty(){
 
-editor.setValue("{\n\n}");
+editor.setValue("{\n\n}")
 
-setStatus("新建JSON");
+buildKeyIndex()
+
+setStatus("新建JSON")
 
 }
 
 document.getElementById("upload")
 .addEventListener("change",function(e){
 
-const file = e.target.files[0];
+const file = e.target.files[0]
 
-if(!file) return;
+if(!file) return
 
-const reader = new FileReader();
+const reader = new FileReader()
 
 reader.onload = function(){
 
-editor.setValue(reader.result);
+editor.setValue(reader.result)
 
-setStatus("已加载: "+file.name);
+buildKeyIndex()
 
-};
+setStatus("已加载: "+file.name)
 
-reader.readAsText(file);
+}
 
-});
+reader.readAsText(file)
+
+})
 
 function downloadJSON(){
 
 const blob = new Blob(
 [editor.getValue()],
 {type:"application/json"}
-);
+)
 
-const a = document.createElement("a");
+const a = document.createElement("a")
 
-a.href = URL.createObjectURL(blob);
+a.href = URL.createObjectURL(blob)
 
-a.download = "data.json";
+a.download = "data.json"
 
-a.click();
-
-setStatus("已下载JSON");
+a.click()
 
 }
 
@@ -51,22 +53,20 @@ async function saveFile(){
 try{
 
 const handle = await window.showSaveFilePicker({
-
 suggestedName:"data.json"
+})
 
-});
+const writable = await handle.createWritable()
 
-const writable = await handle.createWritable();
+await writable.write(editor.getValue())
 
-await writable.write(editor.getValue());
+await writable.close()
 
-await writable.close();
-
-setStatus("文件已保存");
+setStatus("保存成功")
 
 }catch(e){
 
-setStatus("保存取消");
+setStatus("保存取消")
 
 }
 
