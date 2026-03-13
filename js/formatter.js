@@ -4,15 +4,14 @@ try{
 
 const obj = JSON.parse(editor.getValue());
 
-editor.setValue(
+const formatted = JSON.stringify(obj,null,4);
 
-JSON.stringify(obj,null,4)
+editor.setValue(formatted);
 
-);
+setStatus("JSON已格式化");
 
-setStatus("已格式化");
-
-}catch(e){
+}
+catch(e){
 
 setStatus("格式化失败");
 
