@@ -1,0 +1,34 @@
+function highlightKeys(name){
+
+const text = editor.getValue()
+
+const regex = new RegExp('"' + name + '"',"g")
+
+let decorations = []
+
+let m
+
+while((m = regex.exec(text)) !== null){
+
+let pos = editor.getModel().getPositionAt(m.index)
+
+decorations.push({
+
+range:new monaco.Range(
+pos.lineNumber,
+pos.column,
+pos.lineNumber,
+pos.column + name.length + 2
+),
+
+options:{
+inlineClassName:"sameKey"
+}
+
+})
+
+}
+
+editor.deltaDecorations([],decorations)
+
+}
